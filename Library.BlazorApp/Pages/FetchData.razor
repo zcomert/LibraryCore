@@ -1,0 +1,47 @@
+﻿@page "/fetchdata"
+
+@using Library.BlazorApp.Data
+@using Library.Core.Concrete 
+@using Library.Business.DependencyResolvers
+@inject BookServices BookServices
+
+<h1>Book List</h1>
+
+<p>Please check the book list given below </p>
+
+@if (books == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in books)
+            {
+            <tr>
+                <td>@book.Id</td>
+                <td>@book.Title</td>
+                <td>@book.Description</td>
+                <td>@book.Year</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Book> books;
+    protected override async Task OnInitializedAsync()
+    {
+        books = await BookServices.GetBooksAsync();
+    }
+}
