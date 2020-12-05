@@ -13,6 +13,7 @@ namespace Library.ConsoleApp
         {
             var bookService = InstanceFactory.GetInstance<IBookService>();
             bookService.GetAll().ForEach(b => Console.WriteLine(b));
+            
             Console.ReadKey();
         }
     }
