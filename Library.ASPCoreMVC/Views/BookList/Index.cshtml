@@ -1,0 +1,18 @@
+﻿@using Library.Core.Concrete
+@model List<Book>
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Index</h1>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@item.Title </li>
+    }
+</ul>
+
